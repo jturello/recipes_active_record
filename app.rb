@@ -13,3 +13,9 @@ get('/recipes/new') do
     @page_title = 'Add Recipe Page'
     erb(:recipe_form)
 end
+
+post('/recipes/new') do
+  @recipe_name = params[:recipe]
+  Recipe.create({:name => @recipe_name})
+  redirect('/')
+end

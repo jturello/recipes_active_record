@@ -1,8 +1,8 @@
 require('spec_helper')
 
-describe('recipe app') do
+describe('recipes') do
 
-  describe('homepage',{:type => :feature}) do
+  describe('app homepage', {:type => :feature}) do
     it('displays the homepage') do
       visit('/')
       expect(page).to have_content('Recipe List')
@@ -29,4 +29,16 @@ describe('recipe app') do
 
     end
   end
+
+  describe('Add Recipe Page', {:type => :feature}) do
+
+    it('let\'s user add a recipe') do
+      visit('/recipes/new')
+      fill_in('recipe', :with => 'Eggs Benedict')
+      click_button('Add')
+      expect(page).to have_content('Eggs Benedict')
+    end
+
+  end
+
 end
