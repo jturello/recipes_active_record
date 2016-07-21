@@ -10,7 +10,7 @@ describe('recipes') do
 
     it('contains no recipes before any are saved') do
       visit('/')
-      expect(page).not_to have_content 'Click a link to view the recipe'
+      expect(page).not_to have_content 'Click a link to view recipe details'
     end
 
     it('displays an Add Recipe link') do
@@ -25,18 +25,27 @@ describe('recipes') do
     end
 
     it('displays recipes that have been saved') do
-      # visit('/')
-
+      visit('/')
+      click_link('Add a Recipe')
+      fill_in('recipe', :with => 'Eggs Benedict')
+      click_button('Add')
+      expect(page).to have_content('Eggs Benedict')
     end
   end
 
   describe('Add Recipe Page', {:type => :feature}) do
 
-    it('let\'s user add a recipe') do
+    it("let's user add a recipe") do
       visit('/recipes/new')
       fill_in('recipe', :with => 'Eggs Benedict')
       click_button('Add')
       expect(page).to have_content('Eggs Benedict')
+    end
+
+    it('displays homepage when home link is clicked') do
+      visit('/recipes/new')
+      click_link('home')
+      expect(page).to have_css('h1', 'Recipe List')
     end
 
   end

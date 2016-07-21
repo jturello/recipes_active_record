@@ -5,7 +5,7 @@ Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 get('/') do
   @page_title = 'Recipe List'
   @recipes = Recipe.all()
-  @sub_header_instructions = 'Click a link to view the recipe'
+  @sub_header_instructions = 'Click a link to view recipe details'
   erb(:index)
 end
 
