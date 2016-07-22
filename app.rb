@@ -19,3 +19,9 @@ post('/recipes/new') do
   Recipe.create({:name => @recipe_name})
   redirect('/')
 end
+
+get('/recipes/:id') do
+  @page_title = 'Recipe Detail Page'
+  @recipe = Recipe.find(params['id'].to_i)
+  erb(:recipe)
+end

@@ -31,6 +31,14 @@ describe('recipes') do
       click_button('Add')
       expect(page).to have_content('Eggs Benedict')
     end
+
+    it('displays Recipe Detail Page when recipe link is clicked') do
+      visit('/recipes/new')
+      fill_in('recipe', :with => 'Eggs Benedict')
+      click_button('Add')
+      click_link('Eggs Benedict')
+      expect(page).to have_content('Recipe Detail Page')
+    end
   end
 
   describe('Add Recipe Page', {:type => :feature}) do
